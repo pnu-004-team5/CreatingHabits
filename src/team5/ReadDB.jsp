@@ -1,6 +1,6 @@
 <%@page import="team5.DBconn"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -13,14 +13,16 @@
 </head>
 <body>
 <%
-   String ip = request.getParameter("ip_address");
    //out.println("code=>" + code);
    Connection con = DBconn.getConnection();
+   PreparedStatement stmt;
+   ResultSet result;
+   String selectSql;
    
-   Statement stmt = con.createStatement();
-   String selectSql = "SELECT name \n"
-		            + "FROM   students ";
-   ResultSet result = stmt.executeQuery(selectSql);
+   selectSql = "SELECT name " 
+            + "FROM   students ";
+   stmt = con.prepareStatement(selectSql);
+   result = stmt.executeQuery();
    if (result.next()) {
       String result_count = result.getString("name");
 %>
@@ -29,17 +31,15 @@
    
    <table>
       <tr>
-         <td><%=result_count %></td>
+        <td><%//result_count %></td>
       </tr>
    </table>
 
    <%
-   } else {
-      out.println("¿À·ù");
-   }
-   result.close();
+  }
+   /* result.close();
    stmt.close();
-   con.close();
+   con.close();*/
    //DBConn.close();
 %>
 </body>
