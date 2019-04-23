@@ -1,4 +1,4 @@
-package com.team5.webapi.webapi;
+package com.team5.webapi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
