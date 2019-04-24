@@ -26,7 +26,7 @@ public class UserController {
   @RequestMapping("/users")
   public List<User> getUsers(Model model) {
     Optional<User> resultUser = userRepository.findById(0);
-    System.out.println(resultUser);
+    
     List<User> userList = userRepository.findAll();
 
     return userList;
