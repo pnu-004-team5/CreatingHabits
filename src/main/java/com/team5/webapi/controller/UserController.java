@@ -1,6 +1,7 @@
 package com.team5.webapi.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -14,8 +15,8 @@ import com.team5.webapi.repository.UserRepository;
 public class UserController {
   @Autowired
   private UserRepository userRepository;
-  
-  @RequestMapping(value="/user", method={ RequestMethod.GET })
+
+  @RequestMapping(value = "/user", method = { RequestMethod.GET })
   public User signup(User user) {
     User userData = userRepository.save(user);
 
@@ -24,6 +25,8 @@ public class UserController {
 
   @RequestMapping("/users")
   public List<User> getUsers(Model model) {
+    Optional<User> resultUser = userRepository.findById(0);
+    System.out.println(resultUser);
     List<User> userList = userRepository.findAll();
 
     return userList;
