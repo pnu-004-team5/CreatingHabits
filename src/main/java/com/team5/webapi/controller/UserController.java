@@ -14,8 +14,8 @@ import com.team5.webapi.repository.UserRepository;
 public class UserController {
   @Autowired
   private UserRepository userRepository;
-
-  @RequestMapping(value="/user", method={ RequestMethod.POST })
+  
+  @RequestMapping(value="/user", method={ RequestMethod.GET })
   public User signup(User user) {
     User userData = userRepository.save(user);
 
