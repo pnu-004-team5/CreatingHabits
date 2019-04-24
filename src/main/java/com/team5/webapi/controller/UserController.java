@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.team5.webapi.model.User;
 import com.team5.webapi.repository.UserRepository;
@@ -14,8 +15,8 @@ public class UserController {
   @Autowired
   private UserRepository userRepository;
 
-  @RequestMapping("/user")
-  public User getUser(User user) {
+  @RequestMapping(value="/user", method={ RequestMethod.POST })
+  public User signup(User user) {
     User userData = userRepository.save(user);
 
     return userData;
