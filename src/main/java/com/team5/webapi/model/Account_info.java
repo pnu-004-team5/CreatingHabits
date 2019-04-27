@@ -29,12 +29,12 @@ public class Account_info {
     private int birth2;
     private int birth3;
     private String address;
-    private Date regDate;
+    //private Date regDate;
 
     public Account_info() {
     }
 
-    public Account_info(long num_id, String id, String password, String name, String email1, String email2, int ph1, int ph2, int ph3, String gender, int birth1, int birth2, int birth3, String address, Date regDate) {
+    public Account_info(long num_id, String id, String password, String name, String email1, String email2, int ph1, int ph2, int ph3, String gender, int birth1, int birth2, int birth3, String address) {
         this.num_id = num_id;
         this.id = id;
         this.password = password;
@@ -49,7 +49,15 @@ public class Account_info {
         this.birth2 = birth2;
         this.birth3 = birth3;
         this.address = address;
-        this.regDate = regDate;
+        //this.regDate = regDate;
+    }
+
+    public long getNumID() {
+        return num_id;
+    }
+
+    public void setNumID(long num_id) {
+        this.num_id = num_id;
     }
 
     public String getId() {
@@ -130,18 +138,20 @@ public class Account_info {
     public void setAddress(String address) {
         this.address = address;
     }
-    public Date getRegDate() {
-        return regDate;
-    }
-    public void setRegdate(Date regDate) {
-        this.regDate = regDate;
-    }
+    // public Date getRegDate() {
+    //     return regDate;
+    // }
+    // public void setRegdate(Date regDate) {
+    //     this.regDate = regDate;
+    // }
     @Override
     public String toString() {
         return "Account_info[id=" + id + ", password=" + password + ", name=" + name + ", email1="
                 + email1 + ", email2=" + email2 + ", ph1=" + ph1 + ", ph2=" + ph2 + ", ph3=" 
               + ph3 + ", gender=" + gender + ", birth1=" + birth1 + " birth2=" 
-                + birth2 + ",  birth3=" + birth3 + ", address=" + address +", regDate=" + regDate  + "]";
+                + birth2 + ",  birth3=" + birth3 + ", address=" + address
+                // +", regDate=" + regDate 
+                + "]";
     }
 
 
