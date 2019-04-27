@@ -12,20 +12,20 @@ import com.team5.webapi.repository.UserRepository;
 
 @RestController
 public class UserController {
-  @Autowired
-  private UserRepository userRepository;
-  
-  @RequestMapping(value="/user", method={ RequestMethod.GET })
-  public User signup(User user) {
-    User userData = userRepository.save(user);
+	@Autowired
+	private UserRepository userRepository;
 
-    return userData;
-  }
+	@RequestMapping(value = "/user", method = { RequestMethod.GET })
+	public User signup(User user) {
+		User userData = userRepository.save(user);
 
-  @RequestMapping("/users")
-  public List<User> getUsers(Model model) {
-    List<User> userList = userRepository.findAll();
+		return userData;
+	}
 
-    return userList;
-  }
+	@RequestMapping("/users")
+	public List<User> getUsers(Model model) {
+		List<User> userList = userRepository.findAll();
+
+		return userList;
+	}
 }
