@@ -13,23 +13,23 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="users_id_seq")
     @SequenceGenerator(name="users_id_seq", sequenceName="users_id_seq", allocationSize=1)
-    private long id;
+    private Integer id;
 
     private String name;
 
     public User() {
     }
 
-    public User(long id, String name) {
+    public User(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
