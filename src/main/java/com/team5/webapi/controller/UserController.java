@@ -17,7 +17,14 @@ public class UserController {
   private UserRepository userRepository;
 
   @RequestMapping(value = "/user", method = { RequestMethod.GET })
-  public User signup(User user) {
+  public User get(User user) {
+    User userData = userRepository.findById(user.getId()).get();
+
+    return userData;
+  }
+
+  @RequestMapping(value = "/user", method = { RequestMethod.PUT })
+  public User update(User user) {
     User userData = userRepository.save(user);
 
     return userData;
