@@ -20,5 +20,6 @@ dependencies {
 	runtime("com.h2database:h2")
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
+	implementation 'org.json:json:20180813'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
