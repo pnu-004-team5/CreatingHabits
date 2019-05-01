@@ -6,7 +6,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
 @Table(name = "account_info")
@@ -55,11 +54,9 @@ public class Account_info {
     public long getNumID() {
         return num_id;
     }
-
     public void setNumID(long num_id) {
         this.num_id = num_id;
     }
-
     public String getId() {
         return id;
     }
