@@ -1,46 +1,26 @@
 package com.team5.webapi.controller;
 
-import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.team5.webapi.interfaces.EmailService;
 import com.team5.webapi.model.User;
 import com.team5.webapi.repository.UserRepository;
-import com.team5.webapi.utils.RandomString;
+
 
 @RestController
-@Component
-public class UserController implements EmailService {
+public class UserController {
   @Autowired
   private UserRepository userRepository;
 
-  @Autowired
-  public JavaMailSender mailSender;
-
   @RequestMapping(value = "/user", method = { RequestMethod.GET })
   public User get(User user) {
-    User userData;
-    if (user.getId() != null)
-      userData = userRepository.findById(user.getId()).get();
-    else
-      userData = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+    User userData = userRepository.findById(user.getId()).get();
 
-    if (userData == null) {
-      userData = new User();
-    }
     return userData;
   }
 
@@ -51,6 +31,7 @@ public class UserController implements EmailService {
     return userData;
   }
 
+<<<<<<< HEAD
   @RequestMapping(value = "/user", method = { RequestMethod.DELETE })
   public User remove(User user) {
     userRepository.deleteByEmail(user.getEmail());
@@ -105,22 +86,14 @@ public class UserController implements EmailService {
     return responseMessage;
   }
 
+=======
+>>>>>>> parent of 757ed90... signup, login, email auth, remove account
   @RequestMapping("/users")
-  // @Autowired
   public List<User> getUsers(Model model) {
-    // Optional<User> resultUser = userRepository.findById(0);
+    Optional<User> resultUser = userRepository.findById(0);
     
     List<User> userList = userRepository.findAll();
 
     return userList;
   }
-
-  public void sendSimpleMessage(String to, String subject, String text) {
-    SimpleMailMessage message = new SimpleMailMessage();
-    message.setTo(to);
-    message.setSubject(subject);
-    message.setText(text);
-    mailSender.send(message);
-  }
-
 }

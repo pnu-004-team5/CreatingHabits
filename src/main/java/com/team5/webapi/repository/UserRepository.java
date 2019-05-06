@@ -1,13 +1,9 @@
 package com.team5.webapi.repository;
 
-import javax.transaction.Transactional;
-
 import com.team5.webapi.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
+<<<<<<< HEAD
 public interface UserRepository extends JpaRepository<User, Integer> {
 
   public User findByEmail(String email);
@@ -29,4 +25,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
   @Query(value = "UPDATE users SET name = :name, email = :email, password = :password, phone = :phone, introduce = :introduce WHERE id = :id", nativeQuery = true)
   void updateUser(@Param("id") int id, @Param("name") String name, @Param("email") String email,
       @Param("password") String password, @Param("phone") String phone, @Param("introduce") String introduce);
+=======
+public interface UserRepository extends JpaRepository <User, Integer>  {
+  
+>>>>>>> parent of 757ed90... signup, login, email auth, remove account
 }

@@ -14,7 +14,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq")
     @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
     private Integer id;
+
     private String name;
+<<<<<<< HEAD
     private String email;
     private String password;
     private boolean auth;
@@ -22,17 +24,15 @@ public class User {
     private String phone;
     private String introduce;
     private String profileImagePath;
+=======
+>>>>>>> parent of 757ed90... signup, login, email auth, remove account
 
     public User() {
     }
 
-    public User(Integer id, String name, String email, String password, boolean auth, String authKey) {
+    public User(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
-        this.auth = auth;
-        this.authKey = authKey;
     }
 
     public Integer getId() {
@@ -51,6 +51,7 @@ public class User {
         this.name = name;
     }
 
+<<<<<<< HEAD
     public String getEmail() {
         return email;
     }
@@ -108,6 +109,8 @@ public class User {
         this.profileImagePath = profileImagePath;
     }
 
+=======
+>>>>>>> parent of 757ed90... signup, login, email auth, remove account
     @Override
     public String toString() {
         return String.format("User[id=%d, name='%s']", id, name);
