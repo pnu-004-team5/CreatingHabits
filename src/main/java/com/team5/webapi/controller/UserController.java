@@ -46,7 +46,7 @@ public class UserController implements EmailService {
 
   @RequestMapping(value = "/user", method = { RequestMethod.PUT })
   public User update(User user) {
-    userRepository.updateUser(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getPhone(), user.getIntroduce());
+    userRepository.updateUser(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getPhone(), user.getIntroduce(), user.getProfileImagePath());
     User userData = userRepository.findById(user.getId()).get();
     return userData;
   }
