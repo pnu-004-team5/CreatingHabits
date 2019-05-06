@@ -46,8 +46,8 @@ public class UserController implements EmailService {
 
   @RequestMapping(value = "/user", method = { RequestMethod.PUT })
   public User update(User user) {
-    User userData = userRepository.save(user);
-
+    userRepository.updateUser(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getPhone(), user.getIntroduce());
+    User userData = userRepository.findById(user.getId()).get();
     return userData;
   }
 
@@ -62,15 +62,21 @@ public class UserController implements EmailService {
   public User create(User user) {
     User userData = userRepository.findByEmail(user.getEmail());
 
-    if (userData == null) {
+    if (userData != null) {
+      userData = new User();
+    } else {
       RandomString randomString = new RandomString(36);
       String authKey = randomString.nextString();
       user.setAuthKey(authKey);
       userData = userRepository.save(user);
-      sendSimpleMessage(userData.getEmail(), "HABIT 인증메일입니다.", "http://15.164.6.167:8080/auth?authKey=" + authKey + "\n 링크로 이동하세요.");
-    } else {
-      userData = new User();
+      try {
+        sendSimpleMessage(userData.getEmail(), "HABIT 인증메일입니다.", "http://ec2-13-124-136-43.ap-northeast-2.compute.amazonaws.com:8080/auth?authKey=" + authKey + "\n 링크로 이동하세요.");
+      } catch(Exception e) {
+        e.printStackTrace();
+      }
     }
+
+    // userData = userRepository.findById(user.getId()).get();
 
     return userData;
   }

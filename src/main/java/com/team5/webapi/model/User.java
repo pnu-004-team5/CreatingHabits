@@ -11,14 +11,17 @@ import javax.persistence.SequenceGenerator;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="users_id_seq")
-    @SequenceGenerator(name="users_id_seq", sequenceName="users_id_seq", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq")
+    @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
     private Integer id;
     private String name;
     private String email;
     private String password;
     private boolean auth;
     private String authKey;
+    private String phone;
+    private String introduce;
+    private String profileImagePath;
 
     public User() {
     }
@@ -72,13 +75,37 @@ public class User {
         this.auth = auth;
     }
 
-
     public String getAuthKey() {
         return authKey;
     }
 
     public void setAuthKey(String authKey) {
         this.authKey = authKey;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
+
+    public void setProfileImagePath(String profileImagePath) {
+        this.profileImagePath = profileImagePath;
     }
 
     @Override
