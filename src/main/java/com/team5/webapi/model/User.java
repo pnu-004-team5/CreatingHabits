@@ -99,7 +99,6 @@ public class User {
         this.introduce = introduce;
     }
 
-
     public String getProfileImagePath() {
         return profileImagePath;
     }

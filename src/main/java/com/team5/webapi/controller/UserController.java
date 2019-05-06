@@ -46,7 +46,8 @@ public class UserController implements EmailService {
 
   @RequestMapping(value = "/user", method = { RequestMethod.PUT })
   public User update(User user) {
-    userRepository.updateUser(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getPhone(), user.getIntroduce(), user.getProfileImagePath());
+    userRepository.updateUser(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getPhone(),
+        user.getIntroduce(), user.getProfileImagePath());
     User userData = userRepository.findById(user.getId()).get();
     return userData;
   }
@@ -70,8 +71,10 @@ public class UserController implements EmailService {
       user.setAuthKey(authKey);
       userData = userRepository.save(user);
       try {
-        sendSimpleMessage(userData.getEmail(), "HABIT 인증메일입니다.", "http://ec2-13-124-136-43.ap-northeast-2.compute.amazonaws.com:8080/auth?authKey=" + authKey + "\n 링크로 이동하세요.");
-      } catch(Exception e) {
+        sendSimpleMessage(userData.getEmail(), "HABIT 인증메일입니다.",
+            "http://ec2-13-124-136-43.ap-northeast-2.compute.amazonaws.com:8080/auth?authKey=" + authKey
+                + "\n 링크로 이동하세요.");
+      } catch (Exception e) {
         e.printStackTrace();
       }
     }
@@ -80,16 +83,18 @@ public class UserController implements EmailService {
 
     return userData;
   }
+
   class ResponseMessage {
     public boolean result;
     public String message;
   }
+
   @RequestMapping(value = "/user/auth", method = { RequestMethod.GET })
   public ResponseMessage authEmail(String authKey) {
     User userData = userRepository.findByAuthKey(authKey);
     ResponseMessage responseMessage = new ResponseMessage();
 
-    if(userData != null) {
+    if (userData != null) {
       userRepository.authEmail(userData.getId(), true);
       userData.setAuth(true);
 
@@ -109,7 +114,7 @@ public class UserController implements EmailService {
   // @Autowired
   public List<User> getUsers(Model model) {
     // Optional<User> resultUser = userRepository.findById(0);
-    
+
     List<User> userList = userRepository.findAll();
 
     return userList;
