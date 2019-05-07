@@ -89,7 +89,7 @@ public class UserController implements EmailService {
     public String message;
   }
 
-  @RequestMapping(value = "/user/auth", method = { RequestMethod.GET })
+  @RequestMapping(value = "/auth", method = { RequestMethod.GET })
   public ResponseMessage authEmail(String authKey) {
     User userData = userRepository.findByAuthKey(authKey);
     ResponseMessage responseMessage = new ResponseMessage();
@@ -103,7 +103,7 @@ public class UserController implements EmailService {
     } else {
       userData = new User();
 
-      responseMessage.result = true;
+      responseMessage.result = false;
       responseMessage.message = "없는 계정입니다. 인증 불가.";
     }
 
