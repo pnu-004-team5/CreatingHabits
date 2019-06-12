@@ -28,17 +28,27 @@ public class BoardDocument {
     private Integer userId;
     private String videoUrl;
     private String content;
+    private String board;
     private Date regdate;
 
     public BoardDocument() {
     }
 
-    public BoardDocument(Integer id, String videoUrl, String content, Date regdate) {
+    public BoardDocument(Integer id, String videoUrl, String content, String board, Date regdate) {
         this.id = id;
         this.videoUrl = videoUrl;
         this.content = content;
+        this.board = board;
         this.regdate = regdate;
     }
+
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+        this.id = id;
+	}
 
 	public Integer getUserId() {
 		return this.userId;
@@ -48,6 +58,13 @@ public class BoardDocument {
         this.userId = userId;
 	}
 
+	public String getBoard() {
+                return this.board;
+	}
+
+	public void setBoard(String board) {
+                this.board = board;
+	}
 	public String getVideoUrl() {
 		return this.videoUrl;
 	}

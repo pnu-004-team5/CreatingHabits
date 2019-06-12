@@ -14,9 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface BoardDocumentRepository extends JpaRepository <BoardDocument, Integer>  {
   public List<BoardDocument> findAllByOrderByIdDesc();
+  
+  // public List<BoardDocument> findByBoardByOrderByIdDesc(String board);
+  @Query(value = "select * from board_documents where board = :board", nativeQuery = true)
+  List<BoardDocument> findByBoardQueryNative(@Param("board") String board);
 
-  // @Modifying(clearAutomatically = true)
-  // @Transactional
-  // @Query(value = "UPDATE habits SET complete_date = :completeDate WHERE id = :id", nativeQuery=true)
-  // void done(@Param("id") int id, @Param("completeDate") String completeDate);
+  @Modifying(clearAutomatically = true)
+  @Transactional
+  @Query(value = "UPDATE board_documents SET content = :content, video_url = :video_url WHERE id = :id", nativeQuery=true)
+  void updateBoardDocument(@Param("id") int id, @Param("content") String content, @Param("video_url") String videoUrl);
 }

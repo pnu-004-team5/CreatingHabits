@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.team5.webapi.model.BoardComment;
 import com.team5.webapi.model.BoardDocument;
 import com.team5.webapi.model.Habit;
+import com.team5.webapi.repository.BoardCommentRepository;
 import com.team5.webapi.repository.BoardDocumentRepository;
 import com.team5.webapi.repository.HabitRepository;;
 
@@ -21,10 +23,18 @@ import com.team5.webapi.repository.HabitRepository;;
 public class BoardController {
   @Autowired
   private BoardDocumentRepository boardDocumentRepository;
+  @Autowired
+  private BoardCommentRepository boardCommentRepository;
 
   @RequestMapping(value = "/board/documents", method = { RequestMethod.GET }, produces = "application/json")
   public List<BoardDocument> getBoardDocuments(BoardDocument boardDocument) {
-    List<BoardDocument> boardDocuments = boardDocumentRepository.findAllByOrderByIdDesc();
+    List<BoardDocument> boardDocuments;
+    System.out.println("-----------------------");
+    System.out.println(boardDocument.getBoard());
+    if(boardDocument.getBoard().equals("total"))
+      boardDocuments = boardDocumentRepository.findAllByOrderByIdDesc();
+    else 
+      boardDocuments = boardDocumentRepository.findByBoardQueryNative(boardDocument.getBoard());
 
     return boardDocuments;
   }
@@ -39,6 +49,60 @@ public class BoardController {
 
     return boardDocumentData;
   }
+
+  @RequestMapping(value = "/board/document", method = { RequestMethod.PUT })
+  public BoardDocument update(BoardDocument boardDocument) {
+    String videoUrl;
+    BoardDocument boardDocumentData;
+
+    if(boardDocument.getVideoUrl() == null) {
+      boardDocumentData = boardDocumentRepository.findById(boardDocument.getId()).get();
+      videoUrl = boardDocumentData.getVideoUrl();
+    } else {
+      videoUrl = boardDocument.getVideoUrl();
+    }
+    System.out.println(boardDocument.getId());
+    System.out.println(boardDocument.getContent());
+    boardDocumentRepository.updateBoardDocument(boardDocument.getId(), boardDocument.getContent(), videoUrl);
+    
+    boardDocumentData = boardDocumentRepository.findById(boardDocument.getId()).get();
+    
+    return boardDocumentData;
+  }
+
+  @RequestMapping(value = "/board/document", method = { RequestMethod.DELETE })
+  public BoardDocument deleteHabit(BoardDocument boardDocument) {
+    boardDocumentRepository.delete(boardDocument);
+
+    return boardDocument;
+  }
+
+
+
+
+
+  @RequestMapping(value = "/board/comments", method = { RequestMethod.GET }, produces = "application/json")
+  public List<BoardComment> getBoardComments(BoardComment boardComment) {
+    List<BoardComment> boardComments = boardCommentRepository.findAllByOrderByIdDesc();
+    System.out.println("--------------------------------");
+    System.out.println(boardComments.get(0).getContent());
+    return boardComments;
+  }
+
+
+  @RequestMapping(value = "/board/comment", method = { RequestMethod.POST }, produces = "application/json")
+  public BoardComment createBoardDocument(BoardComment boardComment) {
+    // boardDocument.setContent("안녕하세요");
+    // boardDocument.setVideoUrl();
+
+    BoardComment boardCommentData = boardCommentRepository.save(boardComment);
+
+    return boardCommentData;
+  }
+
+
+
+
 
   // @RequestMapping(value = "/habit", method = { RequestMethod.POST })
   // public Habit addHabit(Habit habit) {
@@ -88,10 +152,4 @@ public class BoardController {
   //   return habitData;
   // }
 
-  // @RequestMapping(value = "/habit", method = { RequestMethod.DELETE })
-  // public Habit deleteHabit(Habit habit) {
-  //   habitRepository.delete(habit);
-
-  //   return habit;
-  // }
 }
