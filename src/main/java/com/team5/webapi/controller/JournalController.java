@@ -31,14 +31,7 @@ public class JournalController {
 
   @RequestMapping(value = "/journal", method = { RequestMethod.PUT })
   public Journal updateJournal(Journal journal) {
-    System.out.println("----------------");
-    System.out.println(journal.getId());
-    System.out.println(journal.getContent());
-    System.out.println(journal.getImageUrl());
-    System.out.println(journal.getDate());
-    System.out.println("----------------");
     
-
     journalRepository.updateJournal(journal.getId(), journal.getContent(), journal.getImageUrl(), journal.getDate());
     Journal journalData = journalRepository.findById(journal.getId()).get();
 

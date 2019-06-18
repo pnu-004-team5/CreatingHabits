@@ -38,9 +38,7 @@ public class BoardController {
   public BoardDocument createBoardDocument(BoardDocument boardDocument) {
     
 
-    BoardDocument boardDocumentData = boardDocumentRepository.save(boardDocument);
-
-    return boardDocumentData;
+    return boardDocumentRepository.save(boardDocument);
   }
 
   @RequestMapping(value = "/board/document", method = { RequestMethod.PUT })
@@ -75,9 +73,7 @@ public class BoardController {
 
   @RequestMapping(value = "/board/comments", method = { RequestMethod.GET }, produces = "application/json")
   public List<BoardComment> getBoardComments(BoardComment boardComment) {
-    List<BoardComment> boardComments = boardCommentRepository.findAllByOrderByIdDesc();
-    
-    return boardComments;
+    return boardCommentRepository.findAllByOrderByIdDesc();
   }
 
 

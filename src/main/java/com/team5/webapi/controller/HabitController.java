@@ -38,9 +38,7 @@ public class HabitController {
     habit.setColor(colors.get(n));
     habit.setCompleteDate("[]");
 
-    Habit habitData = habitRepository.save(habit);
-
-    return habitData;
+    return habitRepository.save(habit);
   }
 
   @RequestMapping(value = "/habit", method = { RequestMethod.PUT })
@@ -64,7 +62,7 @@ public class HabitController {
       habitRepository.done(id, completeDateJsonArr.toString());
       habitData.setCompleteDate(completeDateJsonArr.toString());
     } catch(Exception e) {
-
+      return habitData;
     }
 
     return habitData;
