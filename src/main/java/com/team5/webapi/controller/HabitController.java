@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team5.webapi.model.Habit;
-import com.team5.webapi.repository.HabitRepository;;
+import com.team5.webapi.repository.HabitRepository;
 
 @RestController
 public class HabitController {
@@ -20,9 +20,7 @@ public class HabitController {
 
   @RequestMapping(value = "/habits", method = { RequestMethod.GET }, produces = "application/json")
   public List<Habit> getMyHabits(Habit habit) {
-    List<Habit> habitList = habitRepository.findAllByOrderByIdAsc();
-
-    return habitList;
+    return habitRepository.findAllByOrderByIdAsc();
   }
 
   @RequestMapping(value = "/habit", method = { RequestMethod.POST })
@@ -66,7 +64,7 @@ public class HabitController {
       habitRepository.done(id, completeDateJsonArr.toString());
       habitData.setCompleteDate(completeDateJsonArr.toString());
     } catch(Exception e) {
-      // e.printStackTrace();
+
     }
 
     return habitData;

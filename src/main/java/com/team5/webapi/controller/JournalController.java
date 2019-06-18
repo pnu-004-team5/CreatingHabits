@@ -41,25 +41,6 @@ public class JournalController {
 
     journalRepository.updateJournal(journal.getId(), journal.getContent(), journal.getImageUrl(), journal.getDate());
     Journal journalData = journalRepository.findById(journal.getId()).get();
-    // try {
-    //   JSONArray completeDateJsonArr = new JSONArray(habitData.getCompleteDate());
-    //   int found = -1;
-    //   for(int i = 0; i < completeDateJsonArr.length(); i++) {
-    //     if(completeDateJsonArr.getString(i).equals(targetDate)) {
-    //       found = i;
-    //     }
-    //   }
-      
-    //   if(found > -1)
-    //     completeDateJsonArr.remove(found);
-    //   else
-    //     completeDateJsonArr.put(targetDate);
-
-    //     journalRepository.done(id, completeDateJsonArr.toString());
-    //   habitData.setCompleteDate(completeDateJsonArr.toString());
-    // } catch(Exception e) {
-    //   e.printStackTrace();
-    // }
 
     return journalData;
   }
