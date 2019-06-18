@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team5.webapi.model.Journal;
-import com.team5.webapi.repository.JournalRepository;;
+import com.team5.webapi.repository.JournalRepository;
 
 @RestController
 public class JournalController {
@@ -17,25 +17,19 @@ public class JournalController {
 
   @RequestMapping(value = "/journals", method = { RequestMethod.GET }, produces = "application/json")
   public List<Journal> getMyJournals(Journal journal) {
-    List<Journal> journalList = journalRepository.findAllByOrderByDateDesc();
-
-    return journalList;
+    return journalRepository.findAllByOrderByDateDesc();
   }
 
   @RequestMapping(value = "/journal", method = { RequestMethod.POST })
   public Journal createJournal(Journal journal) {
-    Journal journalData = journalRepository.save(journal);
-
-    return journalData;
+    return journalRepository.save(journal);
   }
 
   @RequestMapping(value = "/journal", method = { RequestMethod.PUT })
   public Journal updateJournal(Journal journal) {
     
     journalRepository.updateJournal(journal.getId(), journal.getContent(), journal.getImageUrl(), journal.getDate());
-    Journal journalData = journalRepository.findById(journal.getId()).get();
-
-    return journalData;
+    return journalRepository.findById(journal.getId()).get();
   }
 
   @RequestMapping(value = "/journal", method = { RequestMethod.DELETE })

@@ -42,8 +42,8 @@ public class UserController implements EmailService {
   public User update(User user) {
     userRepository.updateUser(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getPhone(),
         user.getIntroduce(), user.getProfileImagePath());
-    User userData = userRepository.findById(user.getId()).get();
-    return userData;
+    return userRepository.findById(user.getId()).get();
+
   }
 
   @RequestMapping(value = "/user", method = { RequestMethod.DELETE })
@@ -69,7 +69,7 @@ public class UserController implements EmailService {
             "http://ec2-52-79-186-214.ap-northeast-2.compute.amazonaws.com:8080/auth?authKey=" + authKey
                 + "\n 링크로 이동하세요.");
       } catch (Exception e) {
-
+        return userData;
       }
     }
 
@@ -110,7 +110,7 @@ public class UserController implements EmailService {
       responseMessage.setResult(true);
       responseMessage.setMessage("인증완료 되었습니다.");
     } else {
-      userData = new User();
+
 
       responseMessage.setResult(false);
       responseMessage.setMessage("없는 계정입니다. 인증 불가.");
@@ -121,9 +121,9 @@ public class UserController implements EmailService {
 
   @RequestMapping("/users")
   public List<User> getUsers(Model model) {
-    List<User> userList = userRepository.findAll();
+    return userRepository.findAll();
 
-    return userList;
+    
   }
 
   public void sendSimpleMessage(String to, String subject, String text) {
