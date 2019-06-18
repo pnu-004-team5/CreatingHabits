@@ -54,8 +54,7 @@ public class BoardController {
     } else {
       videoUrl = boardDocument.getVideoUrl();
     }
-    System.out.println(boardDocument.getId());
-    System.out.println(boardDocument.getContent());
+    
     boardDocumentRepository.updateBoardDocument(boardDocument.getId(), boardDocument.getContent(), videoUrl);
     
     boardDocumentData = boardDocumentRepository.findById(boardDocument.getId()).get();
@@ -77,8 +76,7 @@ public class BoardController {
   @RequestMapping(value = "/board/comments", method = { RequestMethod.GET }, produces = "application/json")
   public List<BoardComment> getBoardComments(BoardComment boardComment) {
     List<BoardComment> boardComments = boardCommentRepository.findAllByOrderByIdDesc();
-    System.out.println("--------------------------------");
-    System.out.println(boardComments.get(0).getContent());
+    
     return boardComments;
   }
 
