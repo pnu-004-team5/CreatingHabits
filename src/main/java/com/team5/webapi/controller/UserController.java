@@ -1,16 +1,10 @@
 package com.team5.webapi.controller;
 
-import java.io.IOException;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-import java.util.Properties;
-
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
