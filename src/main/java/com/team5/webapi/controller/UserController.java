@@ -72,7 +72,7 @@ public class UserController implements EmailService {
       userData = userRepository.save(user);
       try {
         sendSimpleMessage(userData.getEmail(), "HABIT 인증메일입니다.",
-            "http://ec2-13-124-136-43.ap-northeast-2.compute.amazonaws.com:8080/auth?authKey=" + authKey
+            "http://ec2-52-79-186-214.ap-northeast-2.compute.amazonaws.com:8080/auth?authKey=" + authKey
                 + "\n 링크로 이동하세요.");
       } catch (Exception e) {
         e.printStackTrace();
