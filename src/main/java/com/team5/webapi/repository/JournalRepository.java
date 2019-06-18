@@ -18,5 +18,5 @@ public interface JournalRepository extends JpaRepository <Journal, Integer>  {
   @Modifying(clearAutomatically = true)
   @Transactional
   @Query(value = "UPDATE journals SET content = :content, image_url = :image_url, date = :date WHERE id = :id", nativeQuery=true)
-  void updateJournal(@Param("id") int id, @Param("content") String content, @Param("image_url") String image_url, @Param("date") Date date);
+  void updateJournal(@Param("id") int id, @Param("content") String content, @Param("image_url") String imageUrl, @Param("date") Date date);
 }
