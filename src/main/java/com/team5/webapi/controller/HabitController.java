@@ -38,8 +38,8 @@ public class HabitController {
     colors.add("#81c784");
     colors.add("#90a4ae");
     colors.add("#ff8a65");
-    Random rand = new Random();
-    int n = rand.nextInt(colors.size());
+    // Random rand = new Random();
+    int n = new Random().nextInt(colors.size());
     habit.setColor(colors.get(n));
     habit.setCompleteDate("[]");
 
