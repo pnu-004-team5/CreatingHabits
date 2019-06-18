@@ -75,7 +75,7 @@ public class UserController implements EmailService {
             "http://ec2-52-79-186-214.ap-northeast-2.compute.amazonaws.com:8080/auth?authKey=" + authKey
                 + "\n 링크로 이동하세요.");
       } catch (Exception e) {
-        e.printStackTrace();
+        // e.printStackTrace();
       }
     }
 
@@ -85,8 +85,33 @@ public class UserController implements EmailService {
   }
 
   class ResponseMessage {
-    public boolean result;
-    public String message;
+    private boolean result;
+    private String message;
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+      return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+      this.message = message;
+    }
+
+    public boolean getResult() {
+      return result;
+    }
+
+    /**
+     * @param result the result to set
+     */
+    public void setResult(boolean result) {
+      this.result = result;
+    }
   }
 
   @RequestMapping(value = "/auth", method = { RequestMethod.GET })
@@ -98,13 +123,13 @@ public class UserController implements EmailService {
       userRepository.authEmail(userData.getId(), true);
       userData.setAuth(true);
 
-      responseMessage.result = true;
-      responseMessage.message = "인증완료 되었습니다.";
+      responseMessage.setResult(true);
+      responseMessage.setMessage("인증완료 되었습니다.");
     } else {
       userData = new User();
 
-      responseMessage.result = false;
-      responseMessage.message = "없는 계정입니다. 인증 불가.";
+      responseMessage.setResult(false);
+      responseMessage.setMessage("없는 계정입니다. 인증 불가.");
     }
 
     return responseMessage;
