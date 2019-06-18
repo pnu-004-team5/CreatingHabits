@@ -69,7 +69,7 @@ public class HabitController {
       habitRepository.done(id, completeDateJsonArr.toString());
       habitData.setCompleteDate(completeDateJsonArr.toString());
     } catch(Exception e) {
-      e.printStackTrace();
+      // e.printStackTrace();
     }
 
     return habitData;
