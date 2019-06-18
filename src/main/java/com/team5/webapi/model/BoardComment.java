@@ -9,9 +9,6 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
