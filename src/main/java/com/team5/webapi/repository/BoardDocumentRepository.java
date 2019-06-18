@@ -3,7 +3,6 @@ package com.team5.webapi.repository;
 import java.util.List;
 
 import com.team5.webapi.model.BoardDocument;
-import com.team5.webapi.model.Habit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface BoardDocumentRepository extends JpaRepository <BoardDocument, Integer>  {
   public List<BoardDocument> findAllByOrderByIdDesc();
   
-  // public List<BoardDocument> findByBoardByOrderByIdDesc(String board);
   @Query(value = "select * from board_documents where board = :board", nativeQuery = true)
   List<BoardDocument> findByBoardQueryNative(@Param("board") String board);
 
