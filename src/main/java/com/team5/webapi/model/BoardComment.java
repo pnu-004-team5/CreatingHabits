@@ -1,11 +1,6 @@
 package com.team5.webapi.model;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Random;
-
-import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 

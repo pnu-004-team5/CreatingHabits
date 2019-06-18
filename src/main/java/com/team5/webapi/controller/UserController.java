@@ -69,11 +69,10 @@ public class UserController implements EmailService {
             "http://ec2-52-79-186-214.ap-northeast-2.compute.amazonaws.com:8080/auth?authKey=" + authKey
                 + "\n 링크로 이동하세요.");
       } catch (Exception e) {
-        // e.printStackTrace();
+
       }
     }
 
-    // userData = userRepository.findById(user.getId()).get();
 
     return userData;
   }
@@ -82,16 +81,10 @@ public class UserController implements EmailService {
     private boolean result;
     private String message;
 
-    /**
-     * @return the message
-     */
     public String getMessage() {
       return message;
     }
 
-    /**
-     * @param message the message to set
-     */
     public void setMessage(String message) {
       this.message = message;
     }
@@ -100,9 +93,6 @@ public class UserController implements EmailService {
       return result;
     }
 
-    /**
-     * @param result the result to set
-     */
     public void setResult(boolean result) {
       this.result = result;
     }
@@ -130,10 +120,7 @@ public class UserController implements EmailService {
   }
 
   @RequestMapping("/users")
-  // @Autowired
   public List<User> getUsers(Model model) {
-    // Optional<User> resultUser = userRepository.findById(0);
-
     List<User> userList = userRepository.findAll();
 
     return userList;
